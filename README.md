@@ -1,10 +1,10 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+This is a smart watch and smart phone application that helps user to view their representatives' detail based on their location.'
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Zhuosi Wang ([zhuosi.wang@berkeley.edu](mailto:zhuosi.wang@berkeley.edu))
 
 ## Demo Video
 
@@ -13,8 +13,8 @@ See [your demo video title here] (https://link_to_your_video)
 ## Screenshots
 
 <img src="screenshots/main.png" height="400" alt="Screenshot"/>
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Any other support
+<!---->
+<!--## Acknowledgments-->
+<!---->
+<!--* Hat tip to anyone who's code was used-->
+<!--* Any other support-->
