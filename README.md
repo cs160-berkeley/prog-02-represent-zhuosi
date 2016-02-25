@@ -1,6 +1,6 @@
 # PROG 02: Represent!
 
-This is a smart watch and smart phone application that helps user to view their representatives' detail based on their location.'
+This is a smart watch and smart phone application that helps user to view their representatives' detail based on their location.
 
 ## Authors
 
