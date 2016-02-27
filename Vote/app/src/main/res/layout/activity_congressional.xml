@@ -90,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
                 android:layout_marginLeft="10dp"
+                android:textColor="@color/twiteText"
                 android:text="Feb 1"/>
 
         </LinearLayout>
@@ -99,6 +100,7 @@
             android:layout_height="wrap_content"
             android:textSize="10dp"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/twiteText"
             android:text="Gung Hay Fay Choy! Honoring Year of the Monkey #SF's beautiful diversity at @MayorEdLee’s Lunar NY celebration!"/>
 
     </LinearLayout>
@@ -187,6 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
+                android:textColor="@color/twiteText"
                 android:layout_marginLeft="10dp"
                 android:text="Feb 1"/>
 
@@ -197,6 +200,7 @@
             android:layout_height="wrap_content"
             android:textSize="10dp"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/twiteText"
             android:text="Gung Hay Fay Choy! Honoring Year of the Monkey #SF's beautiful diversity at @MayorEdLee’s Lunar NY celebration!"/>
 
     </LinearLayout>
@@ -285,6 +289,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
+                android:textColor="@color/twiteText"
                 android:layout_marginLeft="10dp"
                 android:text="Feb 1"/>
 
@@ -295,6 +300,7 @@
             android:layout_height="wrap_content"
             android:textSize="10dp"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/twiteText"
             android:text="Gung Hay Fay Choy! Honoring Year of the Monkey #SF's beautiful diversity at @MayorEdLee’s Lunar NY celebration!"/>
 
     </LinearLayout>
