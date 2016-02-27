@@ -9,5 +9,7 @@
     <color name="blueButton">#2D9CDB</color>
     <color name="congress">#DADADA</color>
     <color name="linkButtonText">#009688</color>
-
+    <color name="billText">#F2C94C</color>
+    <color name="billTitle">#2F80ED</color>
+    <color name="billEntry">#219653</color>
 </resources>

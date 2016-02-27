@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -15,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
  */
 public class CongressionalActivity extends Activity {
     private Button titleButton = null;
-
+    private LinearLayout tire1 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,16 @@ public class CongressionalActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        tire1 = (LinearLayout) findViewById(R.id.tire1);
+        tire1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CongressionalActivity.this, DetailedActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 //        TextView textView =(TextView)findViewById(R.id.textView);
 //        textView.setClickable(true);
