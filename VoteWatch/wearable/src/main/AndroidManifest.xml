@@ -21,6 +21,8 @@
         </activity>
 
         <activity android:name=".RepresentativeActivity"/>
+        <activity android:name=".ViewvoteActivity"/>
+        <activity android:name=".VotedetailActivity"/>
     </application>
 
 </manifest>
