@@ -52,9 +52,9 @@ public class MainActivity extends Activity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
 
-                Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
-//                sendIntent.putExtra("CAT_NAME", "Fred");
-                startService(sendIntent);
+//                Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
+////                sendIntent.putExtra("CAT_NAME", "Fred");
+//                startService(sendIntent);
 
             }
         });

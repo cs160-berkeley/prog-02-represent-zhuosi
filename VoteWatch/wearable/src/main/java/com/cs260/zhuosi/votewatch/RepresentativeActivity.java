@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -27,6 +28,14 @@ public class RepresentativeActivity extends Activity {
                 partyImage = (ImageView) stub.findViewById(R.id.partyImage);
             }
         });
+
+        final ListView representList = (ListView) findViewById(R.id.representList);
+        int[] pictures = {R.mipmap.nancy_d, R.mipmap.kevin, R.mipmap.angus_king};
+        int[] party = {R.mipmap.d_logo,R.mipmap.r_logo,R.mipmap.i_logo};
+        String[] person = {"Nancy Pelosi", "Kevin McCarthy", "Angus King"};
+        final RepresentativeAdapter adapter = new RepresentativeAdapter(this, pictures, party, person);
+        representList.setAdapter(adapter);
+
     }
 
 

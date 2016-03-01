@@ -1,4 +1,4 @@
-package com.cs160.zhuosi.vote;
+package com.cs260.zhuosi.vote;
 
 import android.app.Service;
 import android.content.Intent;
