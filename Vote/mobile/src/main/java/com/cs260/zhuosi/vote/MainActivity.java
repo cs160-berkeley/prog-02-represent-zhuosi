@@ -16,9 +16,14 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends Activity {
 
-    private Button titleButton = null;
+    private static final String NAME_LIST = "/name_list";
+    private static final String PARTY_LIST = "/party_list";
+//    private Button titleButton = null;
     private Button zipButton = null, locationButton = null;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -52,9 +57,13 @@ public class MainActivity extends Activity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
 
-//                Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
-////                sendIntent.putExtra("CAT_NAME", "Fred");
-//                startService(sendIntent);
+                String finalNameList = "Nancy Pelosi;Kevin McCarthy;Angus King";
+                String finalPartyList = "d;r;i";
+
+                intent = new Intent(MainActivity.this, PhoneToWatchService.class);
+                intent.putExtra(NAME_LIST, finalNameList);
+                intent.putExtra(PARTY_LIST, finalPartyList);
+                startService(intent);
 
             }
         });

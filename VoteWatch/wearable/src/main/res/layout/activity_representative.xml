@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.wearable.view.WatchViewStub xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/watch_view_stub"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:roundLayout="@layout/round_activity_representative"
-    tools:context="com.cs260.zhuosi.votewatch.RepresentativeActivity"
-    tools:deviceIds="wear"></android.support.wearable.view.WatchViewStub>
+    android:id="@+id/representList"
+    android:background="@color/congress">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center_horizontal">
 
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@mipmap/nancy_d"
+            android:id="@+id/repImage"
+            />
 
-    <!--app:rectLayout="@layout/rect_activity_representative"-->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@mipmap/d_logo"
+            android:id="@+id/partyImage"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Nancy Pelosi"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:id="@+id/nameText"
+        />
+</ListView>

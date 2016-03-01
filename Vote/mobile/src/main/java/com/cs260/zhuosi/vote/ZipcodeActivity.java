@@ -13,6 +13,8 @@ import android.widget.Button;
 public class ZipcodeActivity extends Activity {
     private Button titleButton = null;
     private Button confirmButton = null;
+    private static final String NAME_LIST = "/name_list";
+    private static final String PARTY_LIST = "/party_list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,14 @@ public class ZipcodeActivity extends Activity {
                 Intent intent = new Intent(ZipcodeActivity.this, CongressionalActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
+
+                String finalNameList = "Nancy Pelosi;Kevin McCarthy;Angus King";
+                String finalPartyList = "d;r;i";
+
+                intent = new Intent(ZipcodeActivity.this, PhoneToWatchService.class);
+                intent.putExtra(NAME_LIST, finalNameList);
+                intent.putExtra(PARTY_LIST, finalPartyList);
+                startService(intent);
             }
         });
 

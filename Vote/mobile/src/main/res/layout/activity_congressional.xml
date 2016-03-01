@@ -123,7 +123,7 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:background="@mipmap/nancy_d"
+                android:background="@mipmap/kevin"
                 />
 
             <LinearLayout
@@ -136,7 +136,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nancy Pelosi"
+                    android:text="Kevin Carthy"
                     android:textSize="20dp"
                     android:layout_marginTop="10dp"
                     />
@@ -170,7 +170,7 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:background="@mipmap/d_logo"
+                android:background="@mipmap/r_logo"
                 />
         </LinearLayout>
 
@@ -191,7 +191,7 @@
                 android:textSize="10dp"
                 android:textColor="@color/twiteText"
                 android:layout_marginLeft="10dp"
-                android:text="Feb 1"/>
+                android:text="6 hour"/>
 
         </LinearLayout>
 
@@ -201,7 +201,7 @@
             android:textSize="10dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/twiteText"
-            android:text="Gung Hay Fay Choy! Honoring Year of the Monkey #SF's beautiful diversity at @MayorEdLee’s Lunar NY celebration!"/>
+            android:text="America reaffirms its support for our Turkish allies during this terrible time"/>
 
     </LinearLayout>
 
@@ -223,7 +223,7 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:background="@mipmap/nancy_d"
+                android:background="@mipmap/angus_king"
                 />
 
             <LinearLayout
@@ -236,7 +236,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nancy Pelosi"
+                    android:text="Angus King"
                     android:textSize="20dp"
                     android:layout_marginTop="10dp"
                     />
@@ -270,7 +270,7 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:background="@mipmap/d_logo"
+                android:background="@mipmap/i_logo"
                 />
         </LinearLayout>
 
@@ -291,7 +291,7 @@
                 android:textSize="10dp"
                 android:textColor="@color/twiteText"
                 android:layout_marginLeft="10dp"
-                android:text="Feb 1"/>
+                android:text="5 hour"/>
 
         </LinearLayout>
 
@@ -301,7 +301,7 @@
             android:textSize="10dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/twiteText"
-            android:text="Gung Hay Fay Choy! Honoring Year of the Monkey #SF's beautiful diversity at @MayorEdLee’s Lunar NY celebration!"/>
+            android:text="I'm more of an @instagram guy, but your snachats from our Alaska field hearing are prettty cool"/>
 
     </LinearLayout>
 

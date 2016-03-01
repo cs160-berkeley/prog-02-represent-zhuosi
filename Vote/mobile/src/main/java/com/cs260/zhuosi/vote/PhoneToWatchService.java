@@ -17,6 +17,10 @@ import com.google.android.gms.wearable.Wearable;
  */
 public class PhoneToWatchService extends Service {
 
+    private static final String NAME_LIST = "/name_list";
+    private static final String PARTY_LIST = "/party_list";
+    private static final String START_INTENT = "/start_intent";
+
     private GoogleApiClient mApiClient;
 
     @Override
@@ -47,8 +51,10 @@ public class PhoneToWatchService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Which cat do we want to feed? Grab this info from INTENT
         // which was passed over when we called startService
+
         Bundle extras = intent.getExtras();
-        final String catName = extras.getString("CAT_NAME");
+        final String nameList = extras.getString(NAME_LIST);
+        final String partyList = extras.getString(PARTY_LIST);
 
         // Send the message with the cat name
         new Thread(new Runnable() {
@@ -57,7 +63,21 @@ public class PhoneToWatchService extends Service {
                 //first, connect to the apiclient
                 mApiClient.connect();
                 //now that you're connected, send a massage with the cat name
-                sendMessage("/" + catName, catName);
+                sendMessage(NAME_LIST, nameList);
+                try{
+                    Thread.sleep(500);
+                }
+                catch ( java.lang.InterruptedException ie) {
+                    System.out.println(ie);
+                }
+                sendMessage(PARTY_LIST, partyList);
+                try{
+                    Thread.sleep(100);
+                }
+                catch ( java.lang.InterruptedException ie) {
+                    System.out.println(ie);
+                }
+                sendMessage(START_INTENT, "Time to start the new intent!");
             }
         }).start();
 
