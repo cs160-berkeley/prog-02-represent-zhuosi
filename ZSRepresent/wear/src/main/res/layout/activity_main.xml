@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
+    tools:context="com.cs260.zhuosi.votewatch.MainActivity"
+    android:background="@color/congress"
+    android:orientation="vertical"
+    tools:deviceIds="wear_round"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="84dp"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/vote_title_image"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Welcom to VOTE! \n Please find your representitives on the phone"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

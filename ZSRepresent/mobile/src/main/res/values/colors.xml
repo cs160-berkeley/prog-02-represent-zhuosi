@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="titleBackground">#27AE60</color>
+    <color name="buttonText">#FFFFFF</color>
+    <color name="redButton">#EB3535</color>
+    <color name="blueButton">#2D9CDB</color>
+    <color name="congress">#DADADA</color>
+    <color name="linkButtonText">#009688</color>
+    <color name="billText">#F2C94C</color>
+    <color name="billTitle">#2F80ED</color>
+    <color name="billEntry">#219653</color>
+    <color name="twiteText">#9851E0</color>
+</resources>

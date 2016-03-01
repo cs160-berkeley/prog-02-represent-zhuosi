@@ -1,4 +1,4 @@
-package com.cs260.zhuosi.votewatch;
+package com.cs260.zhuosi.zsrepresent;
 import android.content.Intent;
 import android.util.Log;
 
