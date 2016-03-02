@@ -30,6 +30,15 @@ public class PhoneListenerService extends WearableListenerService {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //you need to add this flag since you're starting a new activity from a service
         intent.putExtra(detailId, message);
+
+        // Make a toast with the String
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
+
+
         System.out.println("About to start the detailed page for representative at position " + message);
         startActivity(intent);
     }
