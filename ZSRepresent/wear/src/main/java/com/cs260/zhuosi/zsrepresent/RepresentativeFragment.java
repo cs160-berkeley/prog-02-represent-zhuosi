@@ -25,22 +25,12 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
+    private final String detailId = "/DETAILID";
 
     TextView nameText;
     ImageView partyImage,repImage;
 
     private OnFragmentInteractionListener mListener;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +40,7 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
 
         Bundle bundle = getArguments();
         int length = bundle.getInt("Length");
-        int position = bundle.getInt("Position");
+        final int position = bundle.getInt("Position");
         System.out.println("The Length is  " + length + "  position is  " + position);
 
         if(position < length) {
@@ -67,9 +57,8 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
                 @Override
                 public void onClick(View v) {
                     //send message to ...
-                    Toast.makeText(getActivity(), "Click!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity(), WatchToPhoneService.class);
-                    intent.putExtra("string",name);
+                    intent.putExtra(detailId, Integer.toString(position));
                     getActivity().startService(intent);
                 }
             });

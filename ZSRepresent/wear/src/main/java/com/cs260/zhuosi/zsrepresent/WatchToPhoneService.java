@@ -28,6 +28,8 @@ import java.util.Set;
 public class WatchToPhoneService extends Service implements GoogleApiClient.ConnectionCallbacks {
 
     private GoogleApiClient mWatchApiClient;
+    private final String detailId = "/DETAILID";
+    private String message = "";
     private List<Node> nodes = new ArrayList<>();
 
     @Override
@@ -48,6 +50,14 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         mWatchApiClient.disconnect();
     }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId)
+    {
+        Bundle extras = intent.getExtras();
+        message = extras.getString(detailId);
+        mWatchApiClient.connect();
+        return START_STICKY;
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -56,16 +66,15 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
     public void onConnected(Bundle bundle) {
-        Log.d("T", "in onconnected");
         Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
                 .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
                     @Override
                     public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
                         nodes = getConnectedNodesResult.getNodes();
-                        Log.d("T", "found nodes");
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
-                        sendMessage("/send_toast", "Good job!");
+                        System.out.println("about to send message " + message);
+                        sendMessage(detailId, message);
                         Log.d("T", "sent");
                     }
                 });
