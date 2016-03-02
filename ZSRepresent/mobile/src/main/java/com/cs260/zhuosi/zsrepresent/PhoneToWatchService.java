@@ -56,6 +56,10 @@ public class PhoneToWatchService extends Service {
         final String nameList = extras.getString(NAME_LIST);
         final String partyList = extras.getString(PARTY_LIST);
 
+        System.out.println("nameList got from main activity : " + nameList);
+        System.out.println("partyList got from main activity : " + partyList);
+
+
         // Send the message with the cat name
         new Thread(new Runnable() {
             @Override
@@ -72,7 +76,7 @@ public class PhoneToWatchService extends Service {
                 }
                 sendMessage(PARTY_LIST, partyList);
                 try{
-                    Thread.sleep(100);
+                    Thread.sleep(500);
                 }
                 catch ( java.lang.InterruptedException ie) {
                     System.out.println(ie);

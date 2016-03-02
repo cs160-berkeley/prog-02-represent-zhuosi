@@ -41,6 +41,8 @@ public class RepresentativeAdapter extends FragmentStatePagerAdapter {
             bundle.putString("Location", "United States");
         }
 
+        System.out.println("position is " + position + " Name is " + NameList[position] + " party is " + PartyList[position]);
+
         fragment.setArguments(bundle);
         return fragment;
     }

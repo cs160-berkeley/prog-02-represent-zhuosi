@@ -27,15 +27,18 @@ public class WatchListenerService extends WearableListenerService {
         //(here, fred vs lexy)
 
         if( messageEvent.getPath().equalsIgnoreCase( NAME_LIST ) ) {
-            String name_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            name_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+//            System.out.println("name list received" + name_list);
         } else if (messageEvent.getPath().equalsIgnoreCase( PARTY_LIST )) {
-            String party_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            party_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+//            System.out.println("party list received" + party_list);
         } else if (messageEvent.getPath().equalsIgnoreCase( START_INTENT )) {
             Intent intent = new Intent(this, RepresentativeActivity.class );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
             intent.putExtra("name_list", name_list);
             intent.putExtra("party_list", party_list);
+            System.out.println("**************************");
             System.out.println(name_list);
             System.out.println(party_list);
             startActivity(intent);

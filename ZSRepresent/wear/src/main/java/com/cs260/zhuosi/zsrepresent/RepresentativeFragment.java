@@ -23,6 +23,11 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+    private String mParam1;
+    private String mParam2;
+
     TextView nameText;
     ImageView partyImage,repImage;
 
@@ -30,15 +35,18 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_representative, container, false);
+        View view =inflater.inflate(R.layout.fragment_representative, container, false);
 
         Bundle bundle = getArguments();
         int length = bundle.getInt("Length");
@@ -49,43 +57,28 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
             final String party = bundle.getString("Party") +"_logo";
             partyImage = (ImageView) view.findViewById(R.id.partyImage);
             repImage = (ImageView) view.findViewById(R.id.repImage);
+            nameText = (TextView) view.findViewById(R.id.nameText);
             nameText.setText(name);
-//            Context context = getContext();
-//            partyImage.setImageResource(context.getResources().getIdentifier("mipmap/" + party, null, context.getPackageName()));
+            Context context = getActivity();
+            partyImage.setImageResource(context.getResources().getIdentifier("mipmap/" + party, null, context.getPackageName()));
 
-//            Button button = (Button) view.findViewById(R.id.button);
-//            button.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    //send message to ...
-//                    Toast.makeText(getActivity(), "Click!", Toast.LENGTH_SHORT).show();
-//                    String sendName = name;
-//                    Intent sendMessageRandom = new Intent(getActivity(), WatchToPhoneService.class);
-//                    sendMessageRandom.putExtra("string",sendName);
-//                    getActivity().startService(sendMessageRandom);
-//                }
-//            });
+            nameText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //send message to ...
+                    Toast.makeText(getActivity(), "Click!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), WatchToPhoneService.class);
+                    intent.putExtra("string",name);
+                    getActivity().startService(intent);
+                }
+            });
 
         }
-//        else if(position == length) {
-//            String location = bundle.getString("Location");
-//            textViewTitle = (TextView) view.findViewById(R.id.frag_textView_name);
-//            textViewLocation = (TextView) view.findViewById(R.id.frag_textView_party);
-//            textViewVS = (TextView) view.findViewById(R.id.frag_textView_vs);
-//            textViewVoteObama = (TextView) view.findViewById(R.id.frag_textView_obamavote);
-//            textViewVoteRomney = (TextView) view.findViewById(R.id.frag_textView_romneyvote);
-//            Button button = (Button) view.findViewById(R.id.button);
-//
-//            textViewTitle.setText("2012 Presidential Vote");
-//            textViewLocation.setText(location);
-//            textViewVS.setVisibility(View.VISIBLE);
-//            textViewVoteObama.setVisibility(View.VISIBLE);
-//            textViewVoteRomney.setVisibility(View.VISIBLE);
-//            button.setVisibility(View.INVISIBLE);
-//            textViewVoteObama.setText("55%");
-//            textViewVoteRomney.setText("45%");
-//
-//        }
+        else if(position == length) {
+            System.out.println("at the last view");
+
+            view = inflater.inflate(R.layout.votedetail, container, false);
+        }
 
         return view;
     }
@@ -99,35 +92,28 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public RepresentativeFragment() {
+        // Required empty public constructor
+    }
+
+    public static RepresentativeFragment newInstance(String param1, String param2) {
+        RepresentativeFragment fragment = new RepresentativeFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 }

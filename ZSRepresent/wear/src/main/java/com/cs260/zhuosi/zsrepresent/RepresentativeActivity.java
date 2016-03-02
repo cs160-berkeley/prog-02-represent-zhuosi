@@ -15,7 +15,7 @@ import android.widget.TextView;
  */
 public class RepresentativeActivity extends FragmentActivity implements RepresentativeFragment.OnFragmentInteractionListener {
 
-    TextView maneText = null;
+    TextView nameText = null;
     ViewPager viewPager;
     ImageView repImage = null, partyImage = null;
     String[] NameList, PartyList;
@@ -24,9 +24,8 @@ public class RepresentativeActivity extends FragmentActivity implements Represen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swip);
-        setContentView(R.layout.fragment_representative);
 
-        maneText = (TextView) findViewById(R.id.nameText);
+        nameText = (TextView) findViewById(R.id.nameText);
         repImage = (ImageView) findViewById(R.id.repImage);
         partyImage = (ImageView) findViewById(R.id.partyImage);
 
@@ -41,6 +40,8 @@ public class RepresentativeActivity extends FragmentActivity implements Represen
         if (extras != null) {
             NameList = extras.getString("name_list").split(";");
             PartyList = extras.getString("party_list").split(";");
+            System.out.println("NameList in representativeActivity: " + NameList);
+            System.out.println("PartyList in representativeActivity: " + PartyList);
         }
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
