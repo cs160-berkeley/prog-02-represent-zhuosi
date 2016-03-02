@@ -26,6 +26,8 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private final String detailId = "/DETAILID";
+    private final String[] PictureList = {"nancy_d", "kevin", "angus_king"};
+    private final String[] NameList = {"Nancy Pelosi","Kevin McCarthy","Angus King"};
 
     TextView nameText;
     ImageView partyImage,repImage;
@@ -52,6 +54,12 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
             nameText.setText(name);
             Context context = getActivity();
             partyImage.setImageResource(context.getResources().getIdentifier("mipmap/" + party, null, context.getPackageName()));
+
+            for(int index = 0;index < 3; index ++){
+                if(NameList[index].equals(name)){
+                    repImage.setImageResource(context.getResources().getIdentifier("mipmap/" + PictureList[index], null, context.getPackageName()));
+                }
+            }
 
             nameText.setOnClickListener(new View.OnClickListener() {
                 @Override
