@@ -20,23 +20,26 @@ public class PhoneListenerService extends WearableListenerService {
 
 //   WearableListenerServices don't need an iBinder or an onStartCommand: they just need an onMessageReceieved.
     private final String detailId = "/DETAILID";
+    private final String random = "/RANDOMPAGE";
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
 
-        String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+        if( messageEvent.getPath().equalsIgnoreCase( detailId ) ) {
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 
-        Intent intent = new Intent(this, DetailedActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //you need to add this flag since you're starting a new activity from a service
-        intent.putExtra(detailId, message);
+            Intent intent = new Intent(this, DetailedActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //you need to add this flag since you're starting a new activity from a service
+            intent.putExtra(detailId, message);
 
-        // Make a toast with the String
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-
-        System.out.println("About to start the detailed page for representative at position " + message);
-        startActivity(intent);
+            System.out.println("About to start the detailed page for representative at position " + message);
+            startActivity(intent);
+        }else if( messageEvent.getPath().equalsIgnoreCase( random )){
+            Intent intent = new Intent(this, CongressionalActivity2.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     }
 }

@@ -25,6 +25,7 @@
 
         <activity android:name=".ZipcodeActivity"></activity>
         <activity android:name=".CongressionalActivity"></activity>
+        <activity android:name=".CongressionalActivity2"></activity>
         <activity android:name=".DetailedActivity"></activity>
 
         <service android:name=".PhoneToWatchService" />
