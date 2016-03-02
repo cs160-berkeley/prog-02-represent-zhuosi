@@ -11,18 +11,16 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends Activity {
 
     private TextView mTextView;
+    private String Shacksignal = "/SHAKE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        try {
-//            TimeUnit.SECONDS.sleep(5);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        Intent intent = new Intent(MainActivity.this, RepresentativeActivity.class);
-//        startActivity(intent);
+
+        Intent intent = new Intent(MainActivity.this, WatchToPhoneService.class);
+        intent.putExtra(Shacksignal,"shacked the watch");
+        startService(intent);
     }
 
 }

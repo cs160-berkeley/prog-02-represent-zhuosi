@@ -29,6 +29,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     private GoogleApiClient mWatchApiClient;
     private final String detailId = "/DETAILID";
+    private String Shacksignal = "/SHAKE";
     private Bundle extras = null;
     private List<Node> nodes = new ArrayList<>();
 
@@ -53,11 +54,19 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        String message = intent.getStringExtra(detailId);
-        mWatchApiClient.connect();
-        System.out.println("about to send message " + message);
-        sendMessage(detailId, message);
-        System.out.println("sent");
+        if(intent.getStringExtra(detailId) != null) {
+            String message = intent.getStringExtra(detailId);
+            mWatchApiClient.connect();
+            System.out.println("about to send message " + message);
+            sendMessage(detailId, message);
+            System.out.println("sent");
+        }else if(intent.getStringExtra(Shacksignal) != null) {
+            String message = intent.getStringExtra(Shacksignal);
+            mWatchApiClient.connect();
+            System.out.println("about to send message " + message);
+            sendMessage(Shacksignal, message);
+            System.out.println("sent");
+        }
         return START_STICKY;
     }
 
