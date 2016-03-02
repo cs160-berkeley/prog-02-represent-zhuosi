@@ -29,7 +29,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     private GoogleApiClient mWatchApiClient;
     private final String detailId = "/DETAILID";
-    private String message = "";
+    private Bundle extras = null;
     private List<Node> nodes = new ArrayList<>();
 
     @Override
@@ -53,9 +53,11 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        Bundle extras = intent.getExtras();
-        message = extras.getString(detailId);
+        String message = intent.getStringExtra(detailId);
         mWatchApiClient.connect();
+        System.out.println("about to send message " + message);
+        sendMessage(detailId, message);
+        System.out.println("sent");
         return START_STICKY;
     }
 
@@ -73,9 +75,6 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         nodes = getConnectedNodesResult.getNodes();
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
-                        System.out.println("about to send message " + message);
-                        sendMessage(detailId, message);
-                        Log.d("T", "sent");
                     }
                 });
     }

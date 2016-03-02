@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_marginTop="25dp"
-        android:id="@+id/tire1"
+        android:id="@+id/tire0"
         android:orientation="vertical"
         android:layout_width="330dp"
         android:layout_height="150dp"
@@ -110,6 +110,7 @@
         android:orientation="vertical"
         android:layout_width="330dp"
         android:layout_height="150dp"
+        android:id="@+id/tire1"
         android:layout_gravity="center_horizontal"
         android:background="@color/congress">
 
@@ -210,6 +211,7 @@
         android:orientation="vertical"
         android:layout_width="330dp"
         android:layout_height="150dp"
+        android:id="@+id/tire2"
         android:layout_gravity="center_horizontal"
         android:background="@color/congress">
 

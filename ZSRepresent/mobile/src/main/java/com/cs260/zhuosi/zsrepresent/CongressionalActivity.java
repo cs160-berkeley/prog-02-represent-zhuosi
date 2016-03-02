@@ -16,7 +16,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
  */
 public class CongressionalActivity extends Activity {
     private Button titleButton = null;
-    private LinearLayout tire1 = null;
+    private LinearLayout tire0, tire1, tire2;
+    private final String detailId = "/DETAILID";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +39,32 @@ public class CongressionalActivity extends Activity {
             }
         });
 
+        tire0 = (LinearLayout) findViewById(R.id.tire0);
+        tire0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CongressionalActivity.this, DetailedActivity.class);
+                intent.putExtra(detailId, Integer.toString(0));
+                startActivity(intent);
+            }
+        });
+
         tire1 = (LinearLayout) findViewById(R.id.tire1);
         tire1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CongressionalActivity.this, DetailedActivity.class);
+                intent.putExtra(detailId, Integer.toString(1));
+                startActivity(intent);
+            }
+        });
+
+        tire2 = (LinearLayout) findViewById(R.id.tire2);
+        tire2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CongressionalActivity.this, DetailedActivity.class);
+                intent.putExtra(detailId, Integer.toString(2));
                 startActivity(intent);
             }
         });
