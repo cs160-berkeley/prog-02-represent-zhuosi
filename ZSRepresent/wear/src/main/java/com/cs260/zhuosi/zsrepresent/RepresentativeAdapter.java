@@ -30,8 +30,8 @@ public class RepresentativeAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = new RepresentativeFragment();
         Bundle bundle = new Bundle();
-
         bundle.putInt("Length", NameList.length);
+        bundle.putInt("Position", position);
 
         if(position < NameList.length) {
             bundle.putString("Name", NameList[position]);
@@ -40,8 +40,6 @@ public class RepresentativeAdapter extends FragmentStatePagerAdapter {
         else if(position == NameList.length){
             bundle.putString("Location", "United States");
         }
-
-        System.out.println("position is " + position + " Name is " + NameList[position] + " party is " + PartyList[position]);
 
         fragment.setArguments(bundle);
         return fragment;

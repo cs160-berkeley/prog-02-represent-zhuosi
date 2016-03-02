@@ -51,6 +51,7 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
         Bundle bundle = getArguments();
         int length = bundle.getInt("Length");
         int position = bundle.getInt("Position");
+        System.out.println("The Length is  " + length + "  position is  " + position);
 
         if(position < length) {
             final String name = bundle.getString("Name");
@@ -74,10 +75,20 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
             });
 
         }
-        else if(position == length) {
+        else {
             System.out.println("at the last view");
-
-            view = inflater.inflate(R.layout.votedetail, container, false);
+            TextView showView = (TextView) view.findViewById(R.id.detailTitle);
+            showView.setVisibility(View.VISIBLE);
+            showView = (TextView) view.findViewById(R.id.detailLocation);
+            showView.setVisibility(View.VISIBLE);
+            showView = (TextView) view.findViewById(R.id.detailPercentage);
+            showView.setVisibility(View.VISIBLE);
+            ImageView imageView = (ImageView) view.findViewById(R.id.repImage);
+            imageView.setVisibility(View.INVISIBLE);
+            imageView = (ImageView) view.findViewById(R.id.partyImage);
+            imageView.setVisibility(View.INVISIBLE);
+            showView = (TextView) view.findViewById(R.id.nameText);
+            showView.setVisibility(View.INVISIBLE);
         }
 
         return view;

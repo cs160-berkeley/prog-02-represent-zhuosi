@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,13 +31,53 @@
     </LinearLayout>
 
     <TextView
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="Nancy Pelosi"
         android:textColor="#000000"
         android:textSize="25dp"
-        android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:id="@+id/nameText"
         />
-</LinearLayout>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="2016 Presidential Vote"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:id="@+id/detailTitle"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="United States California"
+        android:textSize="25dp"
+        android:textColor="@color/blueButton"
+        android:id="@+id/detailLocation"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Nancy: 33% \nKevin: 28%"
+        android:textSize="20dp"
+        android:textColor="@color/twiteText"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="120dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/detailPercentage"
+        android:visibility="invisible"
+        />
+
+
+</RelativeLayout>
