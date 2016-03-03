@@ -30,9 +30,9 @@ public class RepresentativeAdapter extends FragmentStatePagerAdapter {
         PictureList.put("Nancy Pelosi","nancy_d");
         PictureList.put("Kevin McCarthy","kevin");
         PictureList.put("Angus King","angus_king");
-        PictureList.put("apple", "apple");
-        PictureList.put("banana", "banana");
-        PictureList.put("orange", "orange");
+        PictureList.put("Apple", "apple");
+        PictureList.put("Banana", "banana");
+        PictureList.put("Orange", "orange");
     }
 
     @Override
@@ -45,10 +45,13 @@ public class RepresentativeAdapter extends FragmentStatePagerAdapter {
         if(position < NameList.length) {
             bundle.putString("Name", NameList[position]);
             bundle.putString("Party", PartyList[position]);
+            System.out.println("**********************");
+            System.out.println(NameList[position] + "    " + PictureList.get(NameList[position]));
+            System.out.println("**********************");
             bundle.putString("Pic", PictureList.get(NameList[position]));
         }
         else if(position == NameList.length){
-            if(NameList[position].equals("Nancy Pelosi") || NameList[position].equals("Kevin McCarthy")|| NameList[position].equals("Angus King") ){
+            if(NameList[0].equals("Nancy Pelosi")){
                 bundle.putString("Location", "United States California");
                 bundle.putString("Result","Nancy: 33% \nKevin: 67%");
             }else{

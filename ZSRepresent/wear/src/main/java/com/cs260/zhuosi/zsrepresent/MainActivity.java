@@ -52,11 +52,6 @@ public class MainActivity extends WearableActivity {
                 startService(intent);
             }
         });
-
-        System.out.println("******************************** ");
-        System.out.println("new version 3");
-        System.out.println("******************************** ");
-
     }
     @Override
     public void onResume() {
