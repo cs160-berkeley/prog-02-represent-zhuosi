@@ -8,7 +8,7 @@ Zhuosi Wang ([zhuosi.wang@berkeley.edu](mailto:zhuosi.wang@berkeley.edu))
 
 ## Demo Video
 
-See [Prog B demo video] (https://youtu.be/p1ums5Tocaw (Links to an external site.))
+See [Prog B demo video] (https://youtu.be/p1ums5Tocaw)
 
 ## Screenshots
 
