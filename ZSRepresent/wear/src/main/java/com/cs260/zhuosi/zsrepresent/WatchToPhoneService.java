@@ -61,10 +61,9 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
             sendMessage(detailId, message);
             System.out.println("sent");
         }else if(intent.getStringExtra(Shacksignal) != null) {
-            String message = intent.getStringExtra(Shacksignal);
             mWatchApiClient.connect();
-            System.out.println("about to send message " + message);
-            sendMessage(Shacksignal, message);
+            System.out.println("about to send message " + Shacksignal);
+            sendMessage(Shacksignal, Shacksignal);
             System.out.println("sent");
         }
         return START_STICKY;

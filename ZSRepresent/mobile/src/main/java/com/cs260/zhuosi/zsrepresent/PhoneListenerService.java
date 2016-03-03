@@ -21,6 +21,8 @@ public class PhoneListenerService extends WearableListenerService {
 //   WearableListenerServices don't need an iBinder or an onStartCommand: they just need an onMessageReceieved.
     private final String detailId = "/DETAILID";
     private final String Shacksignal = "/SHAKE";
+    private static final String NAME_LIST = "/name_list";
+    private static final String PARTY_LIST = "/party_list";
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
@@ -42,6 +44,15 @@ public class PhoneListenerService extends WearableListenerService {
             System.out.println("about to start the shacked view");
             startActivity(intent);
             System.out.println("Started");
+
+            String name_list = "Apple;Banana;Orange";
+            String party_list = "d;r;i";
+
+            intent = new Intent(this, PhoneToWatchService.class);
+            intent.putExtra(NAME_LIST, name_list);
+            intent.putExtra(PARTY_LIST, party_list);
+            startService(intent);
+
         }
     }
 }

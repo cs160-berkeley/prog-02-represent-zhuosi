@@ -13,17 +13,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 /**
  * Created by Zhuosi on 2/29/16.
  */
 public class RepresentativeAdapter extends FragmentStatePagerAdapter {
     String[] NameList;
     String[] PartyList;
+    HashMap<String, String> PictureList = new HashMap<String, String> ();
 
     public RepresentativeAdapter(FragmentManager fm, String[] name_list, String[] party_list){
         super(fm);
         NameList = name_list;
         PartyList = party_list;
+        PictureList.put("Nancy Pelosi","nancy_d");
+        PictureList.put("Kevin McCarthy","kevin");
+        PictureList.put("Angus King","angus_king");
+        PictureList.put("apple", "apple");
+        PictureList.put("banana", "banana");
+        PictureList.put("orange", "orange");
     }
 
     @Override
@@ -36,9 +45,17 @@ public class RepresentativeAdapter extends FragmentStatePagerAdapter {
         if(position < NameList.length) {
             bundle.putString("Name", NameList[position]);
             bundle.putString("Party", PartyList[position]);
+            bundle.putString("Pic", PictureList.get(NameList[position]));
         }
         else if(position == NameList.length){
-            bundle.putString("Location", "United States");
+            if(NameList[position].equals("Nancy Pelosi") || NameList[position].equals("Kevin McCarthy")|| NameList[position].equals("Angus King") ){
+                bundle.putString("Location", "United States California");
+                bundle.putString("Result","Nancy: 33% \nKevin: 67%");
+            }else{
+                bundle.putString("Location", "United States Fruit");
+                bundle.putString("Result","Apple: 53% \nBanana: 47%");
+            }
+
         }
 
         fragment.setArguments(bundle);

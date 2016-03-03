@@ -26,8 +26,6 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private final String detailId = "/DETAILID";
-    private final String[] PictureList = {"nancy_d", "kevin", "angus_king"};
-    private final String[] NameList = {"Nancy Pelosi","Kevin McCarthy","Angus King"};
 
     TextView nameText;
     ImageView partyImage,repImage;
@@ -48,18 +46,15 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
         if(position < length) {
             final String name = bundle.getString("Name");
             final String party = bundle.getString("Party") +"_logo";
+            final String picname = bundle.getString("Pic");
             partyImage = (ImageView) view.findViewById(R.id.partyImage);
             repImage = (ImageView) view.findViewById(R.id.repImage);
             nameText = (TextView) view.findViewById(R.id.nameText);
+
             nameText.setText(name);
             Context context = getActivity();
             partyImage.setImageResource(context.getResources().getIdentifier("mipmap/" + party, null, context.getPackageName()));
-
-            for(int index = 0;index < 3; index ++){
-                if(NameList[index].equals(name)){
-                    repImage.setImageResource(context.getResources().getIdentifier("mipmap/" + PictureList[index], null, context.getPackageName()));
-                }
-            }
+            repImage.setImageResource(context.getResources().getIdentifier("mipmap/" + picname, null, context.getPackageName()));
 
             nameText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,12 +69,18 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
         }
         else {
             System.out.println("at the last view");
+            String location = bundle.getString("Location");
+            String result = bundle.getString("Result");
+
             TextView showView = (TextView) view.findViewById(R.id.detailTitle);
             showView.setVisibility(View.VISIBLE);
             showView = (TextView) view.findViewById(R.id.detailLocation);
+            showView.setText(location);
             showView.setVisibility(View.VISIBLE);
             showView = (TextView) view.findViewById(R.id.detailPercentage);
+            showView.setText(result);
             showView.setVisibility(View.VISIBLE);
+
             ImageView imageView = (ImageView) view.findViewById(R.id.repImage);
             imageView.setVisibility(View.INVISIBLE);
             imageView = (ImageView) view.findViewById(R.id.partyImage);
