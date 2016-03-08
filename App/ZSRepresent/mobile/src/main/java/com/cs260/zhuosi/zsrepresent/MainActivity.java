@@ -14,7 +14,11 @@ import android.widget.*;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.wearable.Wearable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,7 @@ public class MainActivity extends Activity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +53,34 @@ public class MainActivity extends Activity {
         locationButton = (Button) this.findViewById(R.id.locationButton);
         locationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CongressionalActivity.class);
+//                Intent intent = new Intent(MainActivity.this, CongressionalActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//                startActivity(intent);
+//
+//                DataContainer dc = DataContainer.getInstance();
+//                dc.fillDummyData();
+//                dc.findVoteResult(getApplicationContext(), "Autauga");
+//
+//                intent = new Intent(MainActivity.this, PhoneToWatchService.class);
+//                startService(intent);
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
 
-                DataContainer dc = DataContainer.getInstance();
-                dc.fillDummyData();
-
-//                intent = new Intent(MainActivity.this, PhoneToWatchService.class);
-//                startService(intent);
             }
         });
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -72,7 +89,6 @@ public class MainActivity extends Activity {
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
         Action viewAction = Action.newAction(
                 Action.TYPE_VIEW, // TODO: choose an action type.
                 "Main Page", // TODO: Define a title for the content shown.
@@ -83,7 +99,6 @@ public class MainActivity extends Activity {
                 // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://com.cs260.zhuosi.zsrepresent/http/host/path")
         );
-        AppIndex.AppIndexApi.start(client, viewAction);
     }
 
     @Override
@@ -102,7 +117,7 @@ public class MainActivity extends Activity {
                 // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://com.cs260.zhuosi.zsrepresent/http/host/path")
         );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+
     }
+
 }

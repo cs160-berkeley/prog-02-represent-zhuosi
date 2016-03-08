@@ -2,6 +2,12 @@ package com.cs260.zhuosi.zsrepresent;
 
 import android.content.Context;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,11 +17,13 @@ import java.util.List;
  */
 public class DataContainer {
     private static DataContainer mInstance = null;
-
+    private JSONObject voteJason = null;
     public static final String NAME_LIST = "/name_list";
     public static final String PARTY_LIST = "/party_list";
     public static final String detailId = "/DETAILID";
     public static final String Shacksignal = "/SHAKE";
+    public static final String START_INTENT = "/start_intent";
+    private static JSONArray jarray = null;
 
     private DataContainer(){}
     private static List<Representative> representativeList = new ArrayList<Representative>();
@@ -100,5 +108,57 @@ public class DataContainer {
         Representative r = representativeList.get(index);
         Tile t = r.toTile(context);
         return t;
+    }
+
+    public String getNameList() {
+        StringBuilder namelist = new StringBuilder();
+        for(int i = 0; i < getRepresentCount(); i++){
+            namelist.append(getRepresentativeByIndex(i).getName());
+            namelist.append(";");
+        }
+        return namelist.toString();
+    }
+
+    public String getPartyList() {
+        StringBuilder partyList = new StringBuilder();
+        for(int i = 0; i < getRepresentCount(); i++){
+            partyList.append(getRepresentativeByIndex(i).getParty());
+            partyList.append(";");
+        }
+        return partyList.toString();
+    }
+
+
+    public void findVoteResult(Context context, String county) {
+        String json = null;
+
+        try {
+            InputStream stream = context.getAssets().open("election-county-2012.json");
+            int size = stream.available();
+            byte[] buffer = new byte[size];
+            stream.read(buffer);
+            stream.close();
+            json = new String(buffer,"UTF-8");
+            System.out.println("read in file successfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            jarray = new JSONArray(json);
+            System.out.println("created json array successfully");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            for(int i = 0; i < jarray.length(); i++){
+                JSONObject j = (JSONObject) jarray.get(i);
+                if(j.get("county-name").equals(county)){
+                    System.out.println("found it! obama-percentage" + j.get("obama-percentage") + " romney-percentage " + j.get("romney-percentage"));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        String voteResult = voteJason.getString("Bullock");
     }
 }

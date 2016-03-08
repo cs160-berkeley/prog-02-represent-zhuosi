@@ -17,10 +17,6 @@ import com.google.android.gms.wearable.Wearable;
  */
 public class PhoneToWatchService extends Service {
 
-    private static final String NAME_LIST = "/name_list";
-    private static final String PARTY_LIST = "/party_list";
-    private static final String START_INTENT = "/start_intent";
-
     private GoogleApiClient mApiClient;
 
     @Override
@@ -52,9 +48,9 @@ public class PhoneToWatchService extends Service {
         // Which cat do we want to feed? Grab this info from INTENT
         // which was passed over when we called startService
 
-        Bundle extras = intent.getExtras();
-        final String nameList = extras.getString(NAME_LIST);
-        final String partyList = extras.getString(PARTY_LIST);
+        final DataContainer dc = DataContainer.getInstance();
+        final String nameList = dc.getNameList();
+        final String partyList = dc.getPartyList();
 
         System.out.println("nameList got from main activity : " + nameList);
         System.out.println("partyList got from main activity : " + partyList);
@@ -67,21 +63,21 @@ public class PhoneToWatchService extends Service {
                 //first, connect to the apiclient
                 mApiClient.connect();
                 //now that you're connected, send a massage with the cat name
-                sendMessage(NAME_LIST, nameList);
+                sendMessage(dc.NAME_LIST, nameList);
                 try{
                     Thread.sleep(500);
                 }
                 catch ( java.lang.InterruptedException ie) {
                     System.out.println(ie);
                 }
-                sendMessage(PARTY_LIST, partyList);
+                sendMessage(dc.PARTY_LIST, partyList);
                 try{
                     Thread.sleep(500);
                 }
                 catch ( java.lang.InterruptedException ie) {
                     System.out.println(ie);
                 }
-                sendMessage(START_INTENT, "Time to start the new intent!");
+                sendMessage(dc.START_INTENT, "Time to start the new intent!");
             }
         }).start();
 

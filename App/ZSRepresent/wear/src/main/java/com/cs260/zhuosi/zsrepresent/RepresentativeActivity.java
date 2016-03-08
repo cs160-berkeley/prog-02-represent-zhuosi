@@ -32,11 +32,6 @@ public class RepresentativeActivity extends FragmentActivity implements Represen
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
-        final ListView representList = (ListView) findViewById(R.id.representList);
-//        int[] pictures = {R.mipmap.nancy_d, R.mipmap.kevin, R.mipmap.angus_king};
-//        int[] party = {R.mipmap.d_logo,R.mipmap.r_logo,R.mipmap.i_logo};
-//        String[] person = {"Nancy Pelosi", "Kevin McCarthy", "Angus King"};
-
         if (extras != null) {
             NameList = extras.getString("name_list").split(";");
             PartyList = extras.getString("party_list").split(";");
