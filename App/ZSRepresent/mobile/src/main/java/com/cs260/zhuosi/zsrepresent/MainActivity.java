@@ -20,9 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
-
-    private static final String NAME_LIST = "/name_list";
-    private static final String PARTY_LIST = "/party_list";
 //    private Button titleButton = null;
     private Button zipButton = null, locationButton = null;
     /**
@@ -34,7 +31,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
@@ -57,14 +53,11 @@ public class MainActivity extends Activity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
 
-                String name_list = "Nancy Pelosi;Kevin McCarthy;Angus King";
-                String party_list = "d;r;i";
+                DataContainer dc = DataContainer.getInstance();
+                dc.fillDummyData();
 
-                intent = new Intent(MainActivity.this, PhoneToWatchService.class);
-                intent.putExtra(NAME_LIST, name_list);
-                intent.putExtra(PARTY_LIST, party_list);
-                startService(intent);
-
+//                intent = new Intent(MainActivity.this, PhoneToWatchService.class);
+//                startService(intent);
             }
         });
 
