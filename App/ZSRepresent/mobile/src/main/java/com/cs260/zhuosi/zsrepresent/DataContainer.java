@@ -6,11 +6,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Zhuosi on 3/4/16.
@@ -179,4 +182,35 @@ public class DataContainer {
     public String getROMNEY() {
         return Integer.toString(romney);
     }
+
+    public String randomZIP(Context context){
+        String zip = null;
+        BufferedReader br = null;
+        try {
+            InputStream inputStream = context.getAssets().open("us_postal_codes.csv");
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            br = new BufferedReader(inputStreamReader);
+            Random r = new Random();
+            int index = r.nextInt(43582) + 1;
+            String line = "";
+            for(int i = 0; i < index; i++){
+                line = br.readLine();
+            }
+            zip = line.split(",")[0];
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return zip;
+    }
+
 }
