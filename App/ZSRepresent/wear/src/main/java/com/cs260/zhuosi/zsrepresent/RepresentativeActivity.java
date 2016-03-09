@@ -18,29 +18,19 @@ public class RepresentativeActivity extends FragmentActivity implements Represen
     TextView nameText = null;
     ViewPager viewPager;
     ImageView repImage = null, partyImage = null;
-    String[] NameList, PartyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swip);
+        DataContainer dc = DataContainer.getInstance();
 
         nameText = (TextView) findViewById(R.id.nameText);
         repImage = (ImageView) findViewById(R.id.repImage);
         partyImage = (ImageView) findViewById(R.id.partyImage);
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-
-        if (extras != null) {
-            NameList = extras.getString("name_list").split(";");
-            PartyList = extras.getString("party_list").split(";");
-            System.out.println("NameList in representativeActivity: " + NameList);
-            System.out.println("PartyList in representativeActivity: " + PartyList);
-        }
-
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        RepresentativeAdapter swipeAdapter = new RepresentativeAdapter(getSupportFragmentManager(), NameList, PartyList);
+        RepresentativeAdapter swipeAdapter = new RepresentativeAdapter(getSupportFragmentManager(), dc.nameList, dc.partyList);
         viewPager.setAdapter(swipeAdapter);
 
     }

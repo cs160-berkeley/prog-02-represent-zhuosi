@@ -59,7 +59,6 @@ public class MainActivity extends Activity {
 //
 //                DataContainer dc = DataContainer.getInstance();
 //                dc.fillDummyData();
-//                dc.findVoteResult(getApplicationContext(), "Autauga");
 //
 //                intent = new Intent(MainActivity.this, PhoneToWatchService.class);
 //                startService(intent);

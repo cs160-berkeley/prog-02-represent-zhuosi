@@ -11,38 +11,32 @@ import java.nio.charset.StandardCharsets;
  * Created by joleary and noon on 2/19/16 at very late in the night. (early in the morning?)
  */
 public class WatchListenerService extends WearableListenerService {
-    // In PhoneToWatchService, we passed in a path, either "/FRED" or "/LEXY"
-    // These paths serve to differentiate different phone-to-watch messages
-    private static final String NAME_LIST = "/name_list";
-    private static final String PARTY_LIST = "/party_list";
-    private static final String START_INTENT = "/start_intent";
-    private static String name_list = null;
-    private static String party_list = null;
-
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in WatchListenerService, got: " + messageEvent.getPath());
-        //use the 'path' field in sendmessage to differentiate use cases
-        //(here, fred vs lexy)
 
-        if( messageEvent.getPath().equalsIgnoreCase( NAME_LIST ) ) {
-            name_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-//            System.out.println("name list received" + name_list);
-        } else if (messageEvent.getPath().equalsIgnoreCase( PARTY_LIST )) {
-            party_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-//            System.out.println("party list received" + party_list);
-        } else if (messageEvent.getPath().equalsIgnoreCase( START_INTENT )) {
+        DataContainer dc = DataContainer.getInstance();
+
+        if( messageEvent.getPath().equalsIgnoreCase( dc.NAME_LIST ) ) {
+            String name_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            dc.nameList = name_list.split(";");
+        } else if (messageEvent.getPath().equalsIgnoreCase( dc.PARTY_LIST )) {
+            String party_list = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            dc.partyList = party_list.split(";");
+        } else if (messageEvent.getPath().equalsIgnoreCase( dc.COUNTY )) {
+            String county = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            dc.county = county;
+        } else if (messageEvent.getPath().equalsIgnoreCase( dc.VOTEOBAMA )) {
+            String result = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            dc.obama = Integer.parseInt(result);
+        } else if (messageEvent.getPath().equalsIgnoreCase( dc.VOTEROMNEY )) {
+            String result = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            dc.romney = Integer.parseInt(result);
+        } else if (messageEvent.getPath().equalsIgnoreCase( dc.START_INTENT)) {
             Intent intent = new Intent(this, RepresentativeActivity.class );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("name_list", name_list);
-            intent.putExtra("party_list", party_list);
-            System.out.println("**************************");
-            System.out.println(name_list);
-            System.out.println(party_list);
             startActivity(intent);
-            System.out.println("**************************");
         }else {
             super.onMessageReceived( messageEvent );
         }

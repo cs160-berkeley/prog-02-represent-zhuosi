@@ -86,25 +86,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println("latitude is " + location.getLatitude() + " longtitude is " + location.getLongitude());
                 curLongitude = location.getLongitude();
                 curLatitude = location.getLatitude();
-                dc.findVoteResult(getApplicationContext(), getCounty());
                // System.out.println("Get county " + getCounty());
             }
         });
+        getCounty();
+
+
+
 
     }
 
-    public String getCounty() {
-        String country = "";
+    public void getCounty() {
 
         Geocoder gcd = new Geocoder(getApplicationContext());
         try {
             List<Address> addresses = gcd.getFromLocation(curLatitude, curLongitude, 1);
-            country = addresses.get(0).getAdminArea();
+            dc.setCounty(addresses.get(0).getAdminArea());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        dc.findVoteResult(getApplicationContext());
 
-        return country;
     }
 
     @Override

@@ -45,7 +45,7 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
 
         if(position < length) {
             final String name = bundle.getString("Name");
-            final String party = bundle.getString("Party") +"_logo";
+            final String party = bundle.getString("Party");
             final String picname = bundle.getString("Pic");
             partyImage = (ImageView) view.findViewById(R.id.partyImage);
             repImage = (ImageView) view.findViewById(R.id.repImage);

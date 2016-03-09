@@ -18,12 +18,15 @@ import java.util.List;
 public class DataContainer {
     private static DataContainer mInstance = null;
     private JSONObject voteJason = null;
-    public static final String NAME_LIST = "/name_list";
-    public static final String PARTY_LIST = "/party_list";
+    public static final String NAME_LIST = "/NAMELIST";
+    public static final String PARTY_LIST = "/PARTYLIST";
+    public static final String START_INTENT = "/STARTINTENT";
     public static final String detailId = "/DETAILID";
     public static final String Shacksignal = "/SHAKE";
-    public static final String START_INTENT = "/start_intent";
-    private Double obama, romney;
+    public static final String COUNTY = "/COUNTY";
+    public static final String VOTEOBAMA = "/VOTEREOVAMA";
+    public static final String VOTEROMNEY = "/VOTEREROMNEY";
+    private int obama, romney;
 
     private static JSONArray jarray = null;
 
@@ -31,11 +34,22 @@ public class DataContainer {
     private static List<Representative> representativeList = new ArrayList<Representative>();
     private String ZipCode = null;
     private String location = null;
-    private String voteResult = null;
+    private String county = null;
 
     public static List<Representative> getRepresentativeList(){
         return representativeList;
     }
+
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+
     public static DataContainer getInstance(){
         if(mInstance == null){
             mInstance = new DataContainer();
@@ -65,14 +79,6 @@ public class DataContainer {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getVoteResult() {
-        return voteResult;
-    }
-
-    public void setVoteResult(String voteResult) {
-        this.voteResult = voteResult;
     }
 
     public int getRepresentCount(){
@@ -130,8 +136,7 @@ public class DataContainer {
         return partyList.toString();
     }
 
-
-    public void findVoteResult(Context context, String county) {
+    public void findVoteResult(Context context) {
         String json = null;
 
         try {
@@ -155,8 +160,8 @@ public class DataContainer {
             for(int i = 0; i < jarray.length(); i++){
                 JSONObject j = (JSONObject) jarray.get(i);
                 if(j.get("county-name").equals(county)){
-                    obama = (Double)j.get("obama-percentage");
-                    romney = (Double)j.get("romney-percentage");
+                    obama = (Integer)j.get("obama-percentage");
+                    romney = (Integer)j.get("romney-percentage");
                     break;
                 }
             }
@@ -165,5 +170,13 @@ public class DataContainer {
         }
         System.out.println("finished searching, obama vote result is " + obama);
         System.out.println("finished searching, romney vote result is " + romney);
+    }
+
+    public String getObama() {
+        return Integer.toString(obama);
+    }
+
+    public String getROMNEY() {
+        return Integer.toString(romney);
     }
 }

@@ -77,6 +77,28 @@ public class PhoneToWatchService extends Service {
                 catch ( java.lang.InterruptedException ie) {
                     System.out.println(ie);
                 }
+                sendMessage(dc.COUNTY, dc.getCounty());
+                try{
+                    Thread.sleep(500);
+                }
+                catch ( java.lang.InterruptedException ie) {
+                    System.out.println(ie);
+                }
+                sendMessage(dc.VOTEOBAMA, dc.getObama());
+                try{
+                    Thread.sleep(500);
+                }
+                catch ( java.lang.InterruptedException ie) {
+                    System.out.println(ie);
+                }
+                sendMessage(dc.VOTEROMNEY, dc.getROMNEY());
+                try{
+                    Thread.sleep(500);
+                }
+                catch ( java.lang.InterruptedException ie) {
+                    System.out.println(ie);
+                }
+
                 sendMessage(dc.START_INTENT, "Time to start the new intent!");
             }
         }).start();
