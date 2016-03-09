@@ -27,9 +27,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ViewvoteActivity"/>
-        <activity android:name=".VotedetailActivity"/>
-
         <activity
             android:name=".RepresentativeActivity"
             android:label="test_wear_swipe"

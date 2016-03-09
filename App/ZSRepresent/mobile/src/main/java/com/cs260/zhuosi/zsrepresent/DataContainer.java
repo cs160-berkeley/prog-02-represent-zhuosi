@@ -23,6 +23,8 @@ public class DataContainer {
     public static final String detailId = "/DETAILID";
     public static final String Shacksignal = "/SHAKE";
     public static final String START_INTENT = "/start_intent";
+    private Double obama, romney;
+
     private static JSONArray jarray = null;
 
     private DataContainer(){}
@@ -153,12 +155,15 @@ public class DataContainer {
             for(int i = 0; i < jarray.length(); i++){
                 JSONObject j = (JSONObject) jarray.get(i);
                 if(j.get("county-name").equals(county)){
-                    System.out.println("found it! obama-percentage" + j.get("obama-percentage") + " romney-percentage " + j.get("romney-percentage"));
+                    obama = (Double)j.get("obama-percentage");
+                    romney = (Double)j.get("romney-percentage");
+                    break;
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        String voteResult = voteJason.getString("Bullock");
+        System.out.println("finished searching, obama vote result is " + obama);
+        System.out.println("finished searching, romney vote result is " + romney);
     }
 }
