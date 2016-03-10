@@ -43,7 +43,10 @@ package="com.cs260.zhuosi.zsrepresent">
     <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="@string/google_maps_key" />
-</application>
+    <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ec965583f1e472b7ebb58654de4c3dcaf1fc9d6c" />
+    </application>
 
 </manifest>
 
