@@ -33,6 +33,8 @@ public class CongressionalActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        System.out.println("within CongressoinalActivity");
+
         dc = DataContainer.getInstance();
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_congressional);
@@ -60,8 +62,10 @@ public class CongressionalActivity extends Activity {
     }
 
     private void populateTileList() {
+        System.out.println("within populate Tile list" + dc.getRepresentCount());
         for(int i = 0; i < dc.getRepresentCount(); i++){
             tiles.add(dc.getTileByIndex(i, getApplicationContext()));
+            System.out.println("Tile " + i + " down");
         }
     }
 
@@ -102,18 +106,18 @@ public class CongressionalActivity extends Activity {
             partyImage.setImageResource(currentTile.getParty());
 
             TextView twitterDate = (TextView) itemView.findViewById(R.id.twitterDate);
-            twitterDate.setText(currentTile.getLastTwiteTime().toString());
+            twitterDate.setText(currentTile.getLastTwiteTime());
 
             TextView twitterContent = (TextView) itemView.findViewById(R.id.twitterContent);
             twitterContent.setText(currentTile.getLastTwiteContent());
 
+            final Intent intent = new Intent(Intent.ACTION_SEND);
             Button emailButton = (Button) itemView.findViewById(R.id.emailButton);
             emailButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                    intent.setData(Uri.parse(currentTile.getEmail()));
+                    Intent intent = new Intent (Intent.ACTION_VIEW , Uri.parse("mailto:" + currentTile.getEmail()));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Hello"); // put in subject
+                    intent.putExtra(Intent.EXTRA_TEXT, "Vote for " + currentTile.getName()); // put in text
                     startActivity(intent);
                 }
             });

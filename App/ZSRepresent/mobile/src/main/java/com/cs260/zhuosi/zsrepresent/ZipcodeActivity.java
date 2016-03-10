@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * Created by Zhuosi on 2/26/16.
@@ -37,15 +38,24 @@ public class ZipcodeActivity extends Activity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                DataContainer dc = DataContainer.getInstance();
-                dc.fillDummyData();
+                final DataContainer dc = DataContainer.getInstance();
+//                dc.fillDummyData();
+                EditText zipText = (EditText)findViewById(R.id.zipText);
 
-                Intent intent = new Intent(ZipcodeActivity.this, CongressionalActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
+                GetRepresGenTask getRepresGenTask = new GetRepresGenTask(new AsyncResponse() {
+                    @Override
+                    public void processFilnish(Object output) {
+                        dc.setRepresentativeInfo((String)output);
+                        Intent intent = new Intent(ZipcodeActivity.this, CongressionalActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(intent);
+                        intent = new Intent(ZipcodeActivity.this, PhoneToWatchService.class);
+                        startService(intent);
+                    }
+                });
+                getRepresGenTask.setData(zipText.getText().toString());
+                getRepresGenTask.execute();
 
-                intent = new Intent(ZipcodeActivity.this, PhoneToWatchService.class);
-                startService(intent);
             }
         });
 

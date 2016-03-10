@@ -40,6 +40,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
+        DataContainer dc = DataContainer.getInstance();
+        dc.setSunlightKey(getApplicationContext().getString(R.string.sunlight_key));
+
         zipButton = (Button) this.findViewById(R.id.zipButton);
         zipButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -68,7 +71,7 @@ public class MainActivity extends Activity {
 
             }
         });
-        
+
     }
 
     @Override

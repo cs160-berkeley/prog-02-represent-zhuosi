@@ -84,6 +84,7 @@ public class PhoneToWatchService extends Service {
                 catch ( java.lang.InterruptedException ie) {
                     System.out.println(ie);
                 }
+                dc.findVoteResult(getApplicationContext());
                 sendMessage(dc.VOTEOBAMA, dc.getObama());
                 try{
                     Thread.sleep(500);

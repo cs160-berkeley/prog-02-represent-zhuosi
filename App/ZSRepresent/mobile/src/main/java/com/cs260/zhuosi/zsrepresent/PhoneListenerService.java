@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -23,7 +24,7 @@ public class PhoneListenerService extends WearableListenerService {
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
-        DataContainer dc = DataContainer.getInstance();
+        final DataContainer dc = DataContainer.getInstance();
 
         if( messageEvent.getPath().equalsIgnoreCase( dc.detailId ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
@@ -35,21 +36,24 @@ public class PhoneListenerService extends WearableListenerService {
 
             System.out.println("About to start the detailed page for representative at position " + message);
             startActivity(intent);
-        }else if( messageEvent.getPath().equalsIgnoreCase( dc.Shacksignal )){
-//            Intent intent = new Intent(this, CongressionalActivity2.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            System.out.println("about to start the shacked view");
-//            startActivity(intent);
-//            System.out.println("Started");
-//
-//            String name_list = "Apple;Banana;Orange";
-//            String party_list = "d;r;i";
-//
-//            intent = new Intent(this, PhoneToWatchService.class);
-//            intent.putExtra(NAME_LIST, name_list);
-//            intent.putExtra(PARTY_LIST, party_list);
-//            startService(intent);
+        }else {
+            if (messageEvent.getPath().equalsIgnoreCase(dc.Shacksignal)) {
 
+                dc.randomZIP(getApplicationContext());
+                GetRepresGenTask getRepresGenTask = new GetRepresGenTask(new AsyncResponse() {
+                    @Override
+                    public void processFilnish(Object output) {
+                        dc.setRepresentativeInfo((String) output);
+                        Intent intent = new Intent(PhoneListenerService.this, CongressionalActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(intent);
+                        intent = new Intent(PhoneListenerService.this, PhoneToWatchService.class);
+                        startService(intent);
+                    }
+                });
+                getRepresGenTask.setData(dc.getZipCode());
+                getRepresGenTask.execute();
+            }
         }
     }
 }

@@ -36,13 +36,18 @@ public class DetailedActivity extends Activity{
         ImageView repImage = (ImageView) findViewById(R.id.repImage);
         ImageView partyImage = (ImageView) findViewById(R.id.partyImage);
         TextView nameText = (TextView) findViewById(R.id.repName);
+        TextView termEnds = (TextView) findViewById(R.id.termEnds);
+        TextView billText = (TextView) findViewById(R.id.billText);
+        TextView comText = (TextView) findViewById(R.id.comText);
 
         Context context = getApplicationContext();
         Representative r = dc.getRepresentativeByIndex(id);
         partyImage.setImageResource(context.getResources().getIdentifier("mipmap/" + r.getParty(), null, context.getPackageName()));
         repImage.setImageResource(context.getResources().getIdentifier("mipmap/" + r.getPicture(), null, context.getPackageName()));
         nameText.setText(r.getName());
-
+        termEnds.setText(r.getTermEnd());
+        billText.setText(r.getBillList().toString());
+        comText.setText(r.getCommitteeList().toString());
 
         titleButton = (Button)this.findViewById(R.id.titleButton);
         titleButton.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +60,5 @@ public class DetailedActivity extends Activity{
         });
 
     }
-
 
 }

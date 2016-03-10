@@ -1,6 +1,7 @@
 package com.cs260.zhuosi.zsrepresent;
 
 import android.content.Context;
+import android.content.Intent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -30,13 +30,12 @@ public class DataContainer {
     public static final String VOTEOBAMA = "/VOTEREOVAMA";
     public static final String VOTEROMNEY = "/VOTEREROMNEY";
     private int obama, romney;
-
+    private static String sunlightKey = null;
     private static JSONArray jarray = null;
 
     private DataContainer(){}
     private static List<Representative> representativeList = new ArrayList<Representative>();
     private String ZipCode = null;
-    private String location = null;
     private String county = null;
 
     public static List<Representative> getRepresentativeList(){
@@ -76,43 +75,8 @@ public class DataContainer {
         ZipCode = zipCode;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public int getRepresentCount(){
        return representativeList.size();
-    }
-
-    public void fillDummyData() {
-        Date date = new Date();
-
-        Representative r = new Representative();
-        r.setName("Nancy Pelosi");
-        r.setParty("d_logo");
-        r.setPicture("nancy_d");
-        r.setLastTweetDate(date);
-        r.setLastTweetContent("twit content 1");
-        r.setWebsite("http://www.mikulski.senate.gov/");
-        representativeList.add(r);
-        r = new Representative();
-        r.setName("Kevin McCarthy");
-        r.setParty("r_logo");
-        r.setPicture("kevin");
-        r.setLastTweetDate(date);
-        r.setLastTweetContent("twit content 2");
-        representativeList.add(r);
-        r = new Representative();
-        r.setName("Angus King");
-        r.setParty("i_logo");
-        r.setPicture("angus_king");
-        r.setLastTweetDate(date);
-        r.setLastTweetContent("twit content 3");
-        representativeList.add(r);
     }
 
     public Tile getTileByIndex(int index, Context context) {
@@ -163,8 +127,9 @@ public class DataContainer {
             for(int i = 0; i < jarray.length(); i++){
                 JSONObject j = (JSONObject) jarray.get(i);
                 if(j.get("county-name").equals(county)){
-                    obama = (Integer)j.get("obama-percentage");
-                    romney = (Integer)j.get("romney-percentage");
+
+                    obama = ((Double)j.get("obama-percentage")).intValue();
+                    romney = ((Double)j.get("romney-percentage")).intValue();
                     break;
                 }
             }
@@ -183,8 +148,7 @@ public class DataContainer {
         return Integer.toString(romney);
     }
 
-    public String randomZIP(Context context){
-        String zip = null;
+    public void randomZIP(Context context){
         BufferedReader br = null;
         try {
             InputStream inputStream = context.getAssets().open("us_postal_codes.csv");
@@ -196,7 +160,7 @@ public class DataContainer {
             for(int i = 0; i < index; i++){
                 line = br.readLine();
             }
-            zip = line.split(",")[0];
+            ZipCode = line.split(",")[0];
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -210,7 +174,54 @@ public class DataContainer {
             }
         }
 
-        return zip;
     }
 
+    public void setSunlightKey(String sunlightKey) {
+        this.sunlightKey = sunlightKey;
+    }
+
+    public String getSunlightKey(){
+        return sunlightKey;
+    }
+
+    public void setRepresentativeInfo(String forecastJsonStr) {
+        System.out.println("ready to setRepresentativeInfo" + forecastJsonStr);
+        representativeList.clear();
+        try {
+            JSONObject bigObject = new JSONObject(forecastJsonStr);
+            JSONArray repJsonArray = bigObject.getJSONArray("results");
+            for(int i = 0; i < repJsonArray.length(); i++){
+                JSONObject repObject = (JSONObject)repJsonArray.get(i);
+                Representative r = new Representative();
+                r.setName(repObject.get("first_name").toString() + " " + repObject.get("last_name").toString());
+                r.setEmail(repObject.get("oc_email").toString());
+                r.setWebsite(repObject.get("website").toString());
+                county = repObject.get("state_name").toString();
+                r.setParty(convertParty(repObject.get("party").toString()));
+                r.setTermEnd(repObject.get("term_end").toString());
+                String bioguide_id = repObject.get("bioguide_id").toString();
+                r.setBioguide_id(bioguide_id);
+                representativeList.add(r);
+            }
+        }catch(Exception e){
+            System.out.println("jsonobject initial exception " + e);
+        }
+
+
+
+        GetRepresComTask getReprescomTask = new GetRepresComTask(new AsyncResponse() {
+            @Override
+            public void processFilnish(Object output) {
+               GetRepresBillTask getRepresBillTask = new GetRepresBillTask();
+                getRepresBillTask.execute();
+            }
+        });
+        getReprescomTask.execute();
+
+        System.out.println("finished parsing json for basic information");
+    }
+
+    private String convertParty(String party) {
+        return party.toLowerCase()+"_logo";
+    }
 }
