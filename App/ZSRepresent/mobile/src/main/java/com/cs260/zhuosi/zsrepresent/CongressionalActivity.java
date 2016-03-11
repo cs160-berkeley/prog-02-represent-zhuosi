@@ -142,8 +142,8 @@ public class CongressionalActivity extends Activity {
                     Log.d("last tweet", String.valueOf(t.text));
                     Log.d("imgURL", String.valueOf(t.user.profileImageUrl));
                     twitterContent.setText(t.text);
-                    new DownloadImageTask((ImageView) repImage) // image id
-                            .execute(String.valueOf(t.user.profileImageUrl));
+                    dc.getRepresentativeByIndex(position).setPicture(String.valueOf(t.user.profileImageUrl));
+                    new DownloadImageTask((ImageView) repImage).execute(String.valueOf(t.user.profileImageUrl));
                 }
 
                 public void failure(TwitterException exception) {

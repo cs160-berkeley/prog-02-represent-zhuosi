@@ -33,6 +33,8 @@
             android:theme="@android:style/Theme.DeviceDefault.Light">
         </activity>
 
+        <activity android:name=".ShackActivity"/>
+
         <service android:name=".WatchToPhoneService" />
         <!-- Listeners are special services that need to be declared like below, as BIND_LISTENER -->
         <service android:name=".WatchListenerService"

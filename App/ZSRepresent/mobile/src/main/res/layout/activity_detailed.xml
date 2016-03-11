@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="330dp"
-    android:layout_height="wrap_content"
+    android:layout_height="470dp"
     android:layout_gravity="center_horizontal"
     android:background="@color/congress"
     android:layout_marginTop="25dp">
@@ -31,7 +32,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nancy Pelosi"
                     android:textSize="20dp"
                     android:layout_marginTop="10dp"
                     android:id="@+id/repName"
@@ -73,14 +73,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Term ends: 5/16/2016"
             android:layout_gravity="center_horizontal"
             android:id="@+id/termEnds"
             />
 
         <LinearLayout
             android:layout_width="280dp"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:background="@color/billText"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
@@ -94,46 +93,41 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>
             <TextView
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
                 android:text="Tea Tax"
                 android:id="@+id/billText"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/billEntry"
-                android:maxLines = "3"
-                android:scrollbars = "vertical"
-                />
-
+                android:scrollbars = "vertical"/>
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:background="@color/billText"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Committee :"
-            android:textColor="@color/billTitle"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:layout_width="260dp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="wrap_content"
-            android:text="Education Committee"
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="170dp"
+            android:background="@color/billText"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:id="@+id/comText"
-            android:maxLines = "3"
-            android:scrollbars = "vertical"
-            android:textColor="@color/billEntry"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Committee :"
+                android:textColor="@color/billTitle"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:text="Education Committee"
+                android:layout_marginTop="10dp"
+                android:id="@+id/comText"
+                android:scrollbars = "vertical"
+                android:textColor="@color/billEntry"/>
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>

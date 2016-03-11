@@ -92,8 +92,10 @@ public class Representative {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < committeeList.size(); i++){
             sb.append(committeeList.get(i));
-            sb.append("\n");
+            sb.append( System.getProperty("line.separator"));
         }
+        System.out.println("committee list length is " + committeeList.size());
+
         return sb.toString();
     }
 
@@ -173,8 +175,9 @@ public class Representative {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < billList.size(); i++){
             sb.append(billList.get(i));
-            sb.append("\n");
+            sb.append( System.getProperty("line.separator"));
         }
+        System.out.println("BIll list length is " + billList.size());
         return sb.toString();
     }
 }

@@ -50,6 +50,9 @@ public class MainActivity extends WearableActivity {
                 System.out.println("detected shcking on the wtach ");
                 System.out.println("******************************** ");
                 startService(intent);
+                intent = new Intent(MainActivity.this, ShackActivity.class );
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
     }
