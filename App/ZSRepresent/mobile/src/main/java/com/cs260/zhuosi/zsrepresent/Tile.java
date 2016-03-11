@@ -6,13 +6,13 @@ package com.cs260.zhuosi.zsrepresent;
 public class Tile {
     private String name;
     private int party;
-    private int img;
+    private String img;
     private String lastTwiteTime;
     private String lastTwiteContent;
     private String email;
     private String website;
 
-    public Tile(String name, int party, int img, String lastTwiteTime, String lastTwiteContent, String email, String website) {
+    public Tile(String name, int party, String img, String lastTwiteTime, String lastTwiteContent, String email, String website) {
         super();
         this.name = name;
         this.party = party;
@@ -31,7 +31,7 @@ public class Tile {
         return party;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 

@@ -88,8 +88,13 @@ public class Representative {
     }
 
 
-    public List<String> getCommitteeList() {
-        return committeeList;
+    public String getCommitteeList() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < committeeList.size(); i++){
+            sb.append(committeeList.get(i));
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 
     public void setName(String name) {
@@ -141,8 +146,7 @@ public class Representative {
     public Tile toTile(Context context){
 
         int party = context.getResources().getIdentifier("mipmap/" + this.party, null, context.getPackageName());
-        int img = context.getResources().getIdentifier("mipmap/" + this.picture, null, context.getPackageName());
-        Tile t = new Tile(name, party,img, this.lastTweetDate, this.lastTweetContent, this.email, this.website);
+        Tile t = new Tile(name, party,null, this.lastTweetDate, this.lastTweetContent, this.email, this.website);
         return t;
     }
 
@@ -165,7 +169,12 @@ public class Representative {
     //    System.out.println("finished parsing json for bill information");
     }
 
-    public List<String> getBillList() {
-        return billList;
+    public String getBillList() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < billList.size(); i++){
+            sb.append(billList.get(i));
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

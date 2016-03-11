@@ -3,6 +3,9 @@ package com.cs260.zhuosi.zsrepresent;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +34,7 @@ import com.twitter.sdk.android.tweetui.TweetView;
 
 import org.w3c.dom.Text;
 
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -120,15 +124,13 @@ public class CongressionalActivity extends Activity {
             final Tile currentTile = tiles.get(position);
             Context context = getContext();
 
-            ImageView repImage = (ImageView) itemView.findViewById(R.id.repImage);
-            repImage.setImageResource(currentTile.getImg());
-
             TextView nameText = (TextView) itemView.findViewById(R.id.nameText);
             nameText.setText(currentTile.getName());
 
             final ImageView partyImage = (ImageView) itemView.findViewById(R.id.partyImage);
             partyImage.setImageResource(currentTile.getParty());
 
+            final ImageView repImage = (ImageView) itemView.findViewById(R.id.repImage);
             final TextView twitterContent = (TextView) itemView.findViewById(R.id.twitterText);
 
             final TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
@@ -140,6 +142,8 @@ public class CongressionalActivity extends Activity {
                     Log.d("last tweet", String.valueOf(t.text));
                     Log.d("imgURL", String.valueOf(t.user.profileImageUrl));
                     twitterContent.setText(t.text);
+                    new DownloadImageTask((ImageView) repImage) // image id
+                            .execute(String.valueOf(t.user.profileImageUrl));
                 }
 
                 public void failure(TwitterException exception) {
@@ -170,6 +174,31 @@ public class CongressionalActivity extends Activity {
             });
 
             return itemView;
+        }
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 

@@ -99,7 +99,10 @@
                 android:text="Tea Tax"
                 android:id="@+id/billText"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/billEntry"/>
+                android:textColor="@color/billEntry"
+                android:maxLines = "3"
+                android:scrollbars = "vertical"
+                />
 
         </LinearLayout>
 
@@ -127,6 +130,8 @@
             android:text="Education Committee"
             android:layout_marginTop="10dp"
             android:id="@+id/comText"
+            android:maxLines = "3"
+            android:scrollbars = "vertical"
             android:textColor="@color/billEntry"/>
 
     </LinearLayout>
