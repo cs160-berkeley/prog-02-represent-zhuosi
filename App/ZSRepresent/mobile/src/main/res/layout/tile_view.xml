@@ -33,7 +33,6 @@
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nancy Pelosi"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
                 android:id="@+id/nameText"
@@ -75,7 +74,7 @@
     </LinearLayout>
 
     <LinearLayout
-    android:layout_width="wrap_content"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
         android:layout_marginLeft="0dp">
@@ -87,26 +86,13 @@
         android:layout_marginLeft="10dp"/>
 
         <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="140pt"
         android:layout_height="wrap_content"
         android:textSize="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:textColor="@color/twiteText"
-            android:id="@+id/twitterDate"
-        android:text="Feb 1"/>
+            android:id="@+id/twitterText" />
 
     </LinearLayout>
-
-    <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="10dp"
-    android:layout_marginLeft="10dp"
-    android:textColor="@color/twiteText"
-        android:id="@+id/twitterContent"
-    android:text="Gung Hay Fay Choy! Honoring Year of the Monkey #SF's beautiful diversity at @MayorEdLee’s Lunar NY celebration!"
-        />
-
-
 
 </LinearLayout>

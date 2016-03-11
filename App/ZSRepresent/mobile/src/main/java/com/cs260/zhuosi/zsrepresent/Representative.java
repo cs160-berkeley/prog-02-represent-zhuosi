@@ -122,7 +122,7 @@ public class Representative {
 
 
     public void setCommitteeList(String info) {
-        System.out.println("ready to setRepresentativeInfo" + info);
+ //       System.out.println("ready to setRepresentativeInfo" + info);
         committeeList.clear();
         try {
             JSONObject bigObject = new JSONObject(info);
@@ -135,7 +135,7 @@ public class Representative {
         }catch(Exception e){
             System.out.println("jsonobject initial exception " + e);
         }
-        System.out.println("finished parsing json for commity information");
+  //      System.out.println("finished parsing json for commity information");
     }
 
     public Tile toTile(Context context){
@@ -151,7 +151,7 @@ public class Representative {
     }
 
     public void addBillList(String info) {
-        System.out.println("ready to setRepresentativeInfo" + info);
+    //    System.out.println("ready to setRepresentativeInfo" + info);
         try {
             JSONObject bigObject = new JSONObject(info);
             JSONArray billJsonArray = bigObject.getJSONArray("results");
@@ -162,7 +162,7 @@ public class Representative {
         }catch(Exception e){
             System.out.println("jsonobject initial exception " + e);
         }
-        System.out.println("finished parsing json for bill information");
+    //    System.out.println("finished parsing json for bill information");
     }
 
     public List<String> getBillList() {

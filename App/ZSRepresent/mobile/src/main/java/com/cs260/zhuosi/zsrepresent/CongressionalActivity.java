@@ -106,7 +106,7 @@ public class CongressionalActivity extends Activity {
             }
 
             LinearLayout tileLayout = (LinearLayout) itemView.findViewById(R.id.tileLayout);
-            tileLayout.setOnClickListener(new View.OnClickListener(){
+            tileLayout.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -126,11 +126,26 @@ public class CongressionalActivity extends Activity {
             TextView nameText = (TextView) itemView.findViewById(R.id.nameText);
             nameText.setText(currentTile.getName());
 
-            ImageView partyImage = (ImageView) itemView.findViewById(R.id.partyImage);
+            final ImageView partyImage = (ImageView) itemView.findViewById(R.id.partyImage);
             partyImage.setImageResource(currentTile.getParty());
 
-            TextView twitterDate = (TextView) itemView.findViewById(R.id.twitterDate);
-            twitterDate.setText(currentTile.getLastTwiteTime());
+            final TextView twitterContent = (TextView) itemView.findViewById(R.id.twitterText);
+
+            final TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
+            final com.twitter.sdk.android.core.services.StatusesService statusesService = twitterApiClient.getStatusesService();
+            statusesService.userTimeline(null,currentTile.getLastTwiteContent() , null, null, null, null, null, null, null, new Callback<List<Tweet>>() {
+                @Override
+                public void success(Result<List<Tweet>> result) {
+                    Tweet t = result.data.get(0);
+                    Log.d("last tweet", String.valueOf(t.text));
+                    Log.d("imgURL", String.valueOf(t.user.profileImageUrl));
+                    twitterContent.setText(t.text);
+                }
+
+                public void failure(TwitterException exception) {
+                    System.out.println(exception.getLocalizedMessage());
+                }
+            });
 
             final Intent intent = new Intent(Intent.ACTION_SEND);
             Button emailButton = (Button) itemView.findViewById(R.id.emailButton);
@@ -153,101 +168,6 @@ public class CongressionalActivity extends Activity {
                     startActivity(intent);
                 }
             });
-
-            final TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
-            // Can also use Twitter directly: Twitter.getApiClient()
-            final com.twitter.sdk.android.core.services.StatusesService statusesService = twitterApiClient.getStatusesService();
-            final View finalItemView = itemView;
-            statusesService.userTimeline(null, "SenatorBoxer", null, null, null, null, null, null, null, new Callback<List<Tweet>>() {
-                @Override
-                public void success(Result<List<Tweet>> result) {
-                    Tweet t = result.data.get(0);
-                    Log.d("last tweet", String.valueOf(t.text));
-                    Log.d("imgURL", String.valueOf(t.user.profileImageUrl));
-                    List<Long> tweetIds = Arrays.asList(Long.parseLong(t.idStr));
-//                    final LinearLayout myLayout
-//                            = (LinearLayout) finalItemView.findViewById(R.id.twitterContent);
-//                    TweetUtils.loadTweets(tweetIds, new Callback<List<Tweet>>() {
-//                        @Override
-//                        public void success(Result<List<Tweet>> result) {
-//                            for (Tweet tweet : result.data) {
-//                                myLayout.addView(new TweetView(CongressionalActivity.this, tweet));
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void failure(TwitterException exception) {
-//                            System.out.println(exception);
-//                        }
-                        TextView twitterContent = (TextView) findViewById(R.id.twitterContent);
-                        twitterContent.setText(t.text);
-//                    });
-//                    final com.twitter.sdk.android.core.services.StatusesService statusesService = twitterApiClient.getStatusesService();
-                }
-
-                public void failure(TwitterException exception) {
-                    System.out.println(exception.getLocalizedMessage());
-                }
-            });
-
-//            final TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
-//            // Can also use Twitter directly: Twitter.getApiClient()
-//            final com.twitter.sdk.android.core.services.StatusesService statusesService = twitterApiClient.getStatusesService();
-//            System.out.println("11111111111");
-//
-//            final View finalItemView = itemView;
-//            statusesService.userTimeline(null, "SenatorBoxer", null, null, null, null, null, null, null, new Callback<List<Tweet>>() {
-//                @Override
-//                public void success(Result<List<Tweet>> result) {
-//                    Tweet t = result.data.get(0);
-////                    Log.d("entitites", String.valueOf(t.entities.media.get(0).mediaUrl));
-//                    Log.d("last tweet", String.valueOf(t.text));
-//                    Log.d("imgURL", String.valueOf(t.user.profileImageUrl));
-//                    Log.d("imgURLHTTPS", String.valueOf(t.user.profileImageUrlHttps));
-////                    Log.d("media", String.valueOf(t.entities.media));
-////                    Log.d("get(0)", String.valueOf(t.entities.media.get(0)));
-////                    Log.d("mediaURL", String.valueOf(t.entities.media.get(0).mediaUrl));
-////                    Log.d("TmediaURL", String.valueOf(t.mediaUrl));
-//                    System.out.println(t.idStr);
-//                    System.out.println("SUCCESS");
-//                    tweetIds = Arrays.asList(Long.parseLong(t.idStr));
-////                    tweetIds.add(Long.parseLong("503435417459249153"));
-//                    final LinearLayout myLayout
-//                            = (LinearLayout) finalItemView.findViewById(R.id.twitterContent);
-//                    System.out.println("SUCESSSSSSSSSSS");
-//                    System.out.println(tweetIds);
-//                    TweetUtils.loadTweets(tweetIds, new Callback<List<Tweet>>() {
-//                        @Override
-//                        public void success(Result<List<Tweet>> result) {
-//                            for (Tweet tweet : result.data) {
-//                                System.out.println("SUCESSSSSSSSSSS");
-//                                myLayout.addView(new TweetView(CongressionalActivity.this, tweet));
-//                            }
-//                            System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-//                        }
-//
-//                        @Override
-//                        public void failure(TwitterException exception) {
-//                            // Toast.makeText(...).show();
-//                            System.out.println(exception);
-//                            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-//                        }
-//                    });
-//                    final com.twitter.sdk.android.core.services.StatusesService statusesService = twitterApiClient.getStatusesService();
-//
-//
-//                }
-//
-//                public void failure(TwitterException exception) {
-//                    //Do something on failure
-//                    System.out.println(exception.getCause());
-//                    System.out.println(exception.getLocalizedMessage());
-//
-//                    System.out.println("+++++++++++++++++++++++++++++++");
-//                }
-//            });
-
-
 
             return itemView;
         }

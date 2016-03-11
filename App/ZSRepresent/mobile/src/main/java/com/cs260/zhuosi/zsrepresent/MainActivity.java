@@ -56,18 +56,18 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
-        loginButton = (TwitterLoginButton) findViewById(R.id.login_button);
-        loginButton.setCallback(new Callback<TwitterSession>() {
-            @Override
-            public void success(Result<TwitterSession> result) {
-                // Do something with result, which provides a TwitterSession for making API calls
-            }
-
-            @Override
-            public void failure(TwitterException exception) {
-                // Do something on failure
-            }
-        });
+//        loginButton = (TwitterLoginButton) findViewById(R.id.login_button);
+//        loginButton.setCallback(new Callback<TwitterSession>() {
+//            @Override
+//            public void success(Result<TwitterSession> result) {
+//                // Do something with result, which provides a TwitterSession for making API calls
+//            }
+//
+//            @Override
+//            public void failure(TwitterException exception) {
+//                // Do something on failure
+//            }
+//        });
 
         DataContainer dc = DataContainer.getInstance();
         dc.setSunlightKey(getApplicationContext().getString(R.string.sunlight_key));

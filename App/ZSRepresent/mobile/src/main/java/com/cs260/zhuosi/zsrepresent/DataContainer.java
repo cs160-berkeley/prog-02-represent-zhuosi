@@ -2,6 +2,15 @@ package com.cs260.zhuosi.zsrepresent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.models.Tweet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -185,29 +195,27 @@ public class DataContainer {
     }
 
     public void setRepresentativeInfo(String forecastJsonStr) {
-        System.out.println("ready to setRepresentativeInfo" + forecastJsonStr);
+       // System.out.println("ready to setRepresentativeInfo" + forecastJsonStr);
         representativeList.clear();
         try {
             JSONObject bigObject = new JSONObject(forecastJsonStr);
             JSONArray repJsonArray = bigObject.getJSONArray("results");
             for(int i = 0; i < repJsonArray.length(); i++){
                 JSONObject repObject = (JSONObject)repJsonArray.get(i);
-                Representative r = new Representative();
+                final Representative r = new Representative();
                 r.setName(repObject.get("first_name").toString() + " " + repObject.get("last_name").toString());
                 r.setEmail(repObject.get("oc_email").toString());
                 r.setWebsite(repObject.get("website").toString());
                 county = repObject.get("state_name").toString();
                 r.setParty(convertParty(repObject.get("party").toString()));
                 r.setTermEnd(repObject.get("term_end").toString());
-                String bioguide_id = repObject.get("bioguide_id").toString();
-                r.setBioguide_id(bioguide_id);
+                r.setBioguide_id(repObject.get("bioguide_id").toString());
+                r.setLastTweetContent(repObject.get("twitter_id").toString());
                 representativeList.add(r);
             }
         }catch(Exception e){
             System.out.println("jsonobject initial exception " + e);
         }
-
-
 
         GetRepresComTask getReprescomTask = new GetRepresComTask(new AsyncResponse() {
             @Override
@@ -218,7 +226,7 @@ public class DataContainer {
         });
         getReprescomTask.execute();
 
-        System.out.println("finished parsing json for basic information");
+      //  System.out.println("finished parsing json for basic information");
     }
 
     private String convertParty(String party) {
