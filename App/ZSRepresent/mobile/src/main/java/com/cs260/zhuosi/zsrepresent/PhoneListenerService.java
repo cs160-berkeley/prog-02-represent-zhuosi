@@ -38,14 +38,13 @@ public class PhoneListenerService extends WearableListenerService {
             startActivity(intent);
         }else {
             if (messageEvent.getPath().equalsIgnoreCase(dc.Shacksignal)) {
-
                 dc.randomZIP(getApplicationContext());
                 GetRepresGenTask getRepresGenTask = new GetRepresGenTask(new AsyncResponse() {
                     @Override
                     public void processFilnish(Object output) {
                         dc.setRepresentativeInfo((String) output);
                         Intent intent = new Intent(PhoneListenerService.this, CongressionalActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         intent = new Intent(PhoneListenerService.this, PhoneToWatchService.class);
                         startService(intent);

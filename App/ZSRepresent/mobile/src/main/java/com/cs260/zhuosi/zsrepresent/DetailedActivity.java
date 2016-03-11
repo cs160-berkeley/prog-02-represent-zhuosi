@@ -58,14 +58,36 @@ public class DetailedActivity extends Activity {
         TextView comText = (TextView) findViewById(R.id.comText);
 
         Context context = getApplicationContext();
-        Representative r = dc.getRepresentativeByIndex(id);
+        final Representative r = dc.getRepresentativeByIndex(id);
         partyImage.setImageResource(context.getResources().getIdentifier("mipmap/" + r.getParty(), null, context.getPackageName()));
         nameText.setText(r.getName());
-        termEnds.setText("Term ends: "+ r.getTermEnd());
+        termEnds.setText("Term ends: " + r.getTermEnd());
         System.out.println("Bill list is ::::::::::" + r.getBillList());
         billText.setText(r.getBillList());
         System.out.println("Committee list is ::::::::::" + r.getCommitteeList());
         comText.setText(r.getCommitteeList());
+
+        Button emailButton = (Button) findViewById(R.id.emailButton);
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + r.getEmail()));
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Hello"); // put in subject
+                intent.putExtra(Intent.EXTRA_TEXT, "Vote for " + r.getName()); // put in text
+                startActivity(intent);
+            }
+        });
+
+        Button webButton = (Button) findViewById(R.id.webButton);
+        webButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(r.getWebsite()));
+                startActivity(intent);
+            }
+        });
+
 
         new DownloadImageTask((ImageView) repImage).execute(String.valueOf(r.getPicture()));
 

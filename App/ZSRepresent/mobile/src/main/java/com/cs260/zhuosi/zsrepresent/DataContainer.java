@@ -137,9 +137,18 @@ public class DataContainer {
             for(int i = 0; i < jarray.length(); i++){
                 JSONObject j = (JSONObject) jarray.get(i);
                 if(j.get("county-name").equals(county)){
-
-                    obama = ((Double)j.get("obama-percentage")).intValue();
-                    romney = ((Double)j.get("romney-percentage")).intValue();
+                    String obamaVote = j.get("obama-percentage").toString();
+                    if(obamaVote.indexOf(".") == -1){
+                        obama = Integer.parseInt(obamaVote);
+                    }else{
+                        obama = Integer.parseInt(obamaVote.substring(0, obamaVote.indexOf(".")));
+                    }
+                    String romneyVote = j.get("romney-percentage").toString();
+                    if(romneyVote.indexOf(".") == -1){
+                        obama = Integer.parseInt(romneyVote);
+                    }else{
+                        obama = Integer.parseInt(romneyVote.substring(0, romneyVote.indexOf(".")));
+                    }
                     break;
                 }
             }

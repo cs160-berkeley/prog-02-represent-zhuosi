@@ -10,7 +10,7 @@
         android:paddingTop="10dp"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="2016 Presidential Vote"
+        android:src="@mipmap/vote_title_image"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:textColor="#000000"/>
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:text="Nancy: 33% \nKevin: 28%"
+        android:text="You have shacked the watch. Selecting a randome ZIP code"
         android:textSize="20dp"
         android:textColor="@color/twiteText"
         android:layout_marginLeft="1dp"
