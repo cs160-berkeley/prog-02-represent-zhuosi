@@ -33,7 +33,6 @@
         android:layout_marginLeft="40dp"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="Nancy Pelosi"
         android:textColor="#000000"
         android:textSize="25dp"
         android:layout_gravity="center"
@@ -44,7 +43,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="2016 Presidential Vote"
+        android:text="2012 Presidential Vote"
         android:layout_marginLeft="70dp"
         android:gravity="center"
         android:textColor="#000000"
@@ -57,7 +56,6 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
-        android:text="United States California"
         android:textSize="25dp"
         android:textColor="@color/blueButton"
         android:id="@+id/detailLocation"
@@ -66,7 +64,6 @@
     <TextView
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="Nancy: 33% \nKevin: 28%"
         android:textSize="20dp"
         android:textColor="@color/twiteText"
         android:layout_marginLeft="21dp"
@@ -76,6 +73,4 @@
         android:id="@+id/detailPercentage"
         android:visibility="invisible"
         />
-
-
 </RelativeLayout>

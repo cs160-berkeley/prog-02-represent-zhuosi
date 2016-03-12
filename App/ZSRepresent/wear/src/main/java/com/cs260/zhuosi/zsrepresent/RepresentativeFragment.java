@@ -72,6 +72,12 @@ public class RepresentativeFragment extends android.support.v4.app.Fragment {
             String location = bundle.getString("Location");
             String result = bundle.getString("Result");
 
+            System.out.println("00000000000000");
+            System.out.println(" location is " + location);
+            System.out.println(" Result is " + result);
+            System.out.println("00000000000000");
+
+
             TextView showView = (TextView) view.findViewById(R.id.detailTitle);
             showView.setVisibility(View.VISIBLE);
             showView = (TextView) view.findViewById(R.id.detailLocation);

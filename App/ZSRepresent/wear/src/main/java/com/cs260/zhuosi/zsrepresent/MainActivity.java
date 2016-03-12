@@ -41,7 +41,6 @@ public class MainActivity extends WearableActivity {
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mShakeDetector = new ShakeEventListener();
         mShakeDetector.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
-
             @Override
             public void onShake(int count) {
                 Intent intent = new Intent(MainActivity.this, WatchToPhoneService.class);

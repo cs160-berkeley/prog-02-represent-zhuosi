@@ -145,9 +145,9 @@ public class DataContainer {
                     }
                     String romneyVote = j.get("romney-percentage").toString();
                     if(romneyVote.indexOf(".") == -1){
-                        obama = Integer.parseInt(romneyVote);
+                        romney = Integer.parseInt(romneyVote);
                     }else{
-                        obama = Integer.parseInt(romneyVote.substring(0, romneyVote.indexOf(".")));
+                        romney = Integer.parseInt(romneyVote.substring(0, romneyVote.indexOf(".")));
                     }
                     break;
                 }
