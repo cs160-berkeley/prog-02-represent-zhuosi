@@ -8,13 +8,15 @@ Zhuosi Wang ([zhuosi.wang@berkeley.edu](mailto:zhuosi.wang@berkeley.edu))
 
 ## Demo Video
 
-See [Prog B demo video] (https://youtu.be/p1ums5Tocaw)
+See [demo video] (https://www.youtube.com/watch?v=lC1AUPf9VKw)
 
 ## Screenshots
 
-<img src="screenshots/main.png" height="400" alt="Screenshot"/>
-<!---->
-<!--## Acknowledgments-->
-<!---->
-<!--* Hat tip to anyone who's code was used-->
-<!--* Any other support-->
+<img src="screenshots/phone-main.png" height="400" alt="phone Main View"/>
+<img src="screenshots/phone-representativeList.png" height="400" alt="phone representative list View"/>
+<img src="screenshots/phone-representativeDetail.png" height="400" alt="phone representative detail View"/>
+<img src="screenshots/wear-main.png" height="400" alt="wear Main View"/>
+<img src="screenshots/wear-representativeList.png" height="400" alt="wear representative list View"/>
+<img src="screenshots/wear-shackNotification.png" height="400" alt="wear shack notification View"/>
+<img src="screenshots/wear-voteResult.png" height="400" alt="wear vote result View"/>
+
